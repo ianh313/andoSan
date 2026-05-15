@@ -17,7 +17,7 @@ export function Hero() {
     <section
       id="top"
       ref={ref}
-      className="relative min-h-[100svh] w-full overflow-hidden flex items-center"
+      className="relative min-h-[100svh] w-full overflow-hidden flex flex-col pt-28 md:pt-32"
     >
       {/* Ambient ember layers */}
       <motion.div
@@ -38,7 +38,7 @@ export function Hero() {
         <div className="absolute inset-x-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-amber-soft/20 to-transparent" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-6 md:px-10 w-full">
+      <div className="relative mx-auto max-w-7xl px-6 md:px-10 w-full flex-1 flex flex-col justify-center">
         <FadeIn delay={0.4}>
           <div className="flex items-center gap-4 mb-12">
             <span className="block w-12 h-px bg-amber-soft/60" />
@@ -92,27 +92,28 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.6, delay: 2.4 }}
-          className="absolute left-6 md:left-10 right-6 md:right-10 bottom-10 flex items-end justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <span className="num text-[0.7rem]">00 · prologue</span>
-          </div>
-          <a
-            href="#manifesto"
-            className="group flex items-center gap-3 text-cream/60 hover:text-cream transition-colors duration-700"
-          >
-            <span className="eyebrow group-hover:text-cream transition-colors duration-700">
-              Enter quietly
-            </span>
-            <span className="zh-light text-xs tracking-wider2">輕聲進入</span>
-            <span className="block w-10 h-px bg-amber-soft/60 group-hover:w-16 transition-all duration-700" />
-          </a>
-        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, delay: 2.4 }}
+        className="relative w-full mx-auto max-w-7xl px-6 md:px-10 pt-16 pb-10 flex flex-wrap items-end justify-between gap-y-6"
+      >
+        <div className="flex items-center gap-3">
+          <span className="num text-[0.7rem]">00 · prologue</span>
+        </div>
+        <a
+          href="#manifesto"
+          className="group flex items-center gap-3 text-cream/60 hover:text-cream transition-colors duration-700"
+        >
+          <span className="eyebrow group-hover:text-cream transition-colors duration-700">
+            Enter quietly
+          </span>
+          <span className="zh-light text-xs tracking-wider2">輕聲進入</span>
+          <span className="block w-10 h-px bg-amber-soft/60 group-hover:w-16 transition-all duration-700" />
+        </a>
+      </motion.div>
     </section>
   );
 }
