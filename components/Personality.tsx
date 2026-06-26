@@ -1,185 +1,159 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
-const dimensions = [
-  { left: { en: "Quiet", zh: "安靜" }, right: { en: "Expressive", zh: "外放" }, pos: 0.28 },
-  { left: { en: "Healing", zh: "療癒" }, right: { en: "Energetic", zh: "活力" }, pos: 0.32 },
-  { left: { en: "Local", zh: "在地" }, right: { en: "Cosmopolitan", zh: "都市" }, pos: 0.38 },
-  { left: { en: "Elegant", zh: "優雅" }, right: { en: "Playful", zh: "玩心" }, pos: 0.48 },
-  { left: { en: "Social", zh: "社交" }, right: { en: "Introspective", zh: "內省" }, pos: 0.6 },
-];
-
-const variables = [
-  "語氣",
-  "幽默感",
-  "主動程度",
-  "推薦哲學",
-  "情感溫度",
-  "節奏感",
-  "互動密度",
-];
-
-const cities = [
+const lines = [
   {
-    name: "Taipei",
-    zh: "台北",
-    qualities: ["快速", "密集", "夜生活感"],
-    description: "在這裡，Ando 比較像一位熟悉巷弄的老朋友。它不急著替你規劃，但你想拐進哪條街，它都跟得上。",
+    en: "The agent proposes.",
+    zh: "Agent 提出。",
+    desc: "草擬回覆、辨識服務機會、整理 candidate memory、建議下一步。它是一個有想法、但沒有最終權力的代表。",
   },
   {
-    name: "Chiayi",
-    zh: "嘉義",
-    qualities: ["慢", "安靜", "有留白感"],
-    description: "在這裡，Ando 更安靜一點。它說的話比較少，停頓比較多，像是希望你也能慢下來看看這座城。",
+    en: "The harness governs.",
+    zh: "Harness 治理。",
+    desc: "policy、Skill Contracts、evaluator checks、delivery rules——這套 harness 決定什麼能出去、什麼必須先停下來。",
+  },
+  {
+    en: "The staff decides.",
+    zh: "員工決定。",
+    desc: "當事情涉及錢、情緒、模糊、敏感、安全，最終的判斷回到人。staff edits / rejects / corrects——這些動作，會反過來教會系統。",
   },
 ];
 
-function Slider({
-  left,
-  right,
-  pos,
-  index,
-}: {
-  left: { en: string; zh: string };
-  right: { en: string; zh: string };
-  pos: number;
-  index: number;
-}) {
-  return (
-    <div className="relative">
-      <div className="flex items-baseline justify-between mb-3">
-        <div>
-          <p className="display text-cream text-lg">{left.en}</p>
-          <p className="zh-light text-cream/45 text-xs">{left.zh}</p>
-        </div>
-        <div className="text-right">
-          <p className="display text-cream text-lg">{right.en}</p>
-          <p className="zh-light text-cream/45 text-xs">{right.zh}</p>
-        </div>
-      </div>
-      <div className="relative h-px bg-amber-soft/15">
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.4, delay: 0.05 * index, ease: "easeOut" }}
-          style={{ originX: 0 }}
-          className="absolute inset-0 bg-amber-soft/40"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.4 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 + 0.05 * index }}
-          style={{ left: `${pos * 100}%` }}
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber-soft ring-4 ring-amber-soft/15"
-        />
-      </div>
-    </div>
-  );
-}
+const learning = [
+  { en: "Staff edits a reply", zh: "員工改了一句回覆" },
+  { en: "Staff rejects a draft", zh: "員工駁回一段草稿" },
+  { en: "Staff confirms a memory candidate", zh: "員工確認一個 candidate memory" },
+  { en: "Staff corrects a strategy", zh: "員工修正一段策略" },
+];
+
+const becomes = [
+  { en: "Better Skill Contracts", zh: "更好的 Skill Contracts" },
+  { en: "Better hotel knowledge", zh: "更穩的旅館知識" },
+  { en: "Better memory policy", zh: "更恰當的記憶政策" },
+  { en: "Better evaluator checks", zh: "更嚴謹的評估檢查" },
+  { en: "Better service behavior", zh: "更恰當的服務行為" },
+];
 
 export function Personality() {
   return (
-    <section id="personality" className="section relative">
+    <section id="governance" className="section relative">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="06" en="Personality System" zh="人格系統" />
+          <SectionLabel index="06" en="Governance Model" zh="治理模型" />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream max-w-4xl">
-            每間旅館，
-            <br />
-            都應該擁有自己的
-            <span className="text-amber-soft"> Ando 人格</span>。
+          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.18] text-cream max-w-4xl">
+            一個簡單，但
+            <span className="text-amber-soft">不可妥協</span>
+            的模型。
           </h2>
         </Reveal>
 
-        <div className="mt-24 md:mt-28 grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-7">
-            <Reveal delay={0.15}>
-              <p className="eyebrow mb-3">Tuning a soul</p>
-              <p className="zh-light text-cream/45 mb-10 tracking-wider2 text-xs">
-                為一個地方調出靈魂
-              </p>
+        <div className="mt-24 md:mt-32 space-y-12 md:space-y-16">
+          {lines.map((l, i) => (
+            <Reveal key={l.en} delay={0.08 * i}>
+              <article className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-start">
+                <div className="md:col-span-1">
+                  <span className="num text-amber-soft/55 text-sm">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="md:col-span-11">
+                  <p className="display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream">
+                    {l.en}
+                  </p>
+                  <p className="zh-light text-amber-soft/80 mt-2 text-lg tracking-wider2">
+                    {l.zh}
+                  </p>
+                  <p className="body-prose-zh mt-6 max-w-prose2">{l.desc}</p>
+                </div>
+              </article>
+              {i < lines.length - 1 && (
+                <div className="hair mt-12 md:mt-16 max-w-md mx-auto" />
+              )}
             </Reveal>
-            <div className="space-y-10">
-              {dimensions.map((d, i) => (
-                <Reveal key={d.left.en} delay={0.05 * i}>
-                  <Slider {...d} index={i} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:col-span-4 md:col-start-9">
-            <Reveal delay={0.2}>
-              <div className="card-soft p-7 lift">
-                <p className="eyebrow mb-2">Variables</p>
-                <p className="zh-light text-cream/45 mb-6 text-xs tracking-wider2">
-                  可調節變數
-                </p>
-                <ul className="space-y-3">
-                  {variables.map((v, i) => (
-                    <li
-                      key={v}
-                      className="flex items-baseline gap-3 zh body-prose-zh text-[0.98rem]"
-                    >
-                      <span className="num text-amber-soft/40 text-xs">
-                        0{i + 1}
-                      </span>
-                      <span>{v}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
+          ))}
         </div>
 
         <div className="mt-32 md:mt-40">
           <Reveal>
-            <p className="eyebrow mb-3">City Identity</p>
-            <h3 className="display text-3xl md:text-4xl text-cream">
-              城市人格
-            </h3>
-            <p className="body-prose-zh mt-6 max-w-prose2">
-              Ando 不只是旅館的人格，
-              也是它所在城市的一段聲音。同一個系統，在不同城市裡，會有不同的呼吸節奏。
+            <p className="pullquote text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.5] text-amber-soft/90 max-w-4xl">
+              「Humans remain the heroes.
+              <br />
+              That is not a weakness of the system.
+              <br />
+              It is the point of the system.」
+            </p>
+            <p className="margin-note mt-6 max-w-2xl">
+              當事情涉及金錢、敏感、模糊、情緒、安全——人，仍然是主角。
+              這不是系統的弱點，這是系統的重點。
             </p>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {cities.map((c, i) => (
-              <Reveal key={c.name} delay={0.1 * i}>
-                <div className="card-soft p-9 md:p-12 lift relative overflow-hidden h-full">
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-soft/5 blur-3xl rounded-full" />
-                  <div className="relative">
-                    <p className="num text-amber-soft/60 text-xs">city · 0{i + 1}</p>
-                    <h4 className="display text-4xl md:text-5xl text-cream mt-4">
-                      {c.name}
-                    </h4>
-                    <p className="zh-light text-cream/50 mt-1">{c.zh}</p>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {c.qualities.map((q) => (
-                        <span
-                          key={q}
-                          className="px-3 py-1 zh-light text-xs text-amber-soft/85 border border-amber-soft/20"
-                        >
-                          {q}
+        </div>
+
+        <div className="mt-32 md:mt-40 grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+          <div className="md:col-span-4">
+            <Reveal>
+              <p className="eyebrow mb-3">A learning loop</p>
+              <p className="zh-light text-cream/45 mb-6 tracking-wider2 text-xs">
+                學習迴圈
+              </p>
+              <h3 className="display text-2xl md:text-[1.8rem] text-cream leading-[1.25]">
+                每一次員工的修正，
+                <br />
+                都會回到系統。
+              </h3>
+            </Reveal>
+          </div>
+
+          <div className="md:col-span-8 md:pl-10 md:border-l border-amber-soft/10">
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                <div>
+                  <p className="eyebrow mb-3">When staff…</p>
+                  <ul className="space-y-2">
+                    {learning.map((l) => (
+                      <li
+                        key={l.en}
+                        className="zh body-prose-zh text-cream/80 text-[0.96rem] leading-[1.7]"
+                      >
+                        <span className="display text-cream text-[1rem] mr-2">
+                          {l.en}
                         </span>
-                      ))}
-                    </div>
-                    <p className="body-prose-zh mt-8 text-[0.98rem]">
-                      {c.description}
-                    </p>
-                  </div>
+                        <span className="zh-light text-cream/45 text-xs">
+                          {l.zh}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </Reveal>
-            ))}
+
+                <div className="relative">
+                  <span className="hidden sm:block absolute -left-6 top-1/2 -translate-y-1/2 text-amber-soft/60 text-2xl">
+                    →
+                  </span>
+                  <p className="eyebrow mb-3">…the system becomes</p>
+                  <ul className="space-y-2">
+                    {becomes.map((b) => (
+                      <li
+                        key={b.en}
+                        className="zh body-prose-zh text-amber-soft/85 text-[0.96rem] leading-[1.7]"
+                      >
+                        <span className="display text-amber-soft text-[1rem] mr-2">
+                          {b.en}
+                        </span>
+                        <span className="zh-light text-cream/45 text-xs">
+                          {b.zh}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

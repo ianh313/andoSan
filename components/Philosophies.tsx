@@ -3,83 +3,118 @@
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
-type Principle = {
+type Mechanism = {
   num: string;
-  zh: string;
   en: string;
+  zh: string;
+  headline: string;
   body: string;
+  details: { label: string; zh: string }[];
 };
 
-const principles: Principle[] = [
+const mechanisms: Mechanism[] = [
   {
-    num: "01",
-    zh: "Ando 不是 chatbot。",
-    en: "Ando is not a chatbot.",
-    body: "Chatbot 等於問答。Ando 是一個一直在場的角色——它知道現在是幾點、外面下著怎樣的雨、誰剛剛 check-in。問答只是它最表淺的一層。",
+    num: "I",
+    en: "Memory",
+    zh: "記憶",
+    headline: "Governed service intelligence.",
+    body: "不是把旅人講過的話都收進資料庫。系統會分清楚：哪些是當下對話、哪些是趨勢信號、哪些是這趟旅程的 artifact、哪些是員工確認過的記憶、哪些是旅館自己的制度知識。旅人的資料不是旅館的資產，是一份 consent-aware 的託付。",
+    details: [
+      { label: "Temporary conversation context", zh: "當下對話脈絡" },
+      { label: "Current engagement signal", zh: "當前互動信號" },
+      { label: "Trip-level artifact", zh: "旅程級 artifact" },
+      { label: "Staff note", zh: "員工備註" },
+      { label: "Candidate memory", zh: "候選記憶" },
+      { label: "Active memory", zh: "已啟用記憶" },
+      { label: "Institutional hotel knowledge", zh: "旅館制度知識" },
+      { label: "Deleted or suppressed data", zh: "已刪除 / 已壓制" },
+    ],
   },
   {
-    num: "02",
-    zh: "AI 不應該取代人，而是放大 hospitality。",
-    en: "AI should amplify hospitality, not replace it.",
-    body: "前台、夜班、廚房、清潔——他們的判斷、他們的記憶、他們的好心情，是這間旅館真正的資產。Ando 是放大器，不是替代品。",
+    num: "II",
+    en: "Conversation",
+    zh: "對話",
+    headline: "Purposeful, bounded, and adaptive.",
+    body: "Ando 的對話不是等問題的客服 bot。每一次互動，都有一個 governed objective——幫助訂房、回答實務、引導抵達、收集 feedback、發現一個個人化機會。完成之後，就退場。它不會因為「可以說」而繼續說。",
+    details: [
+      { label: "Core journey touchpoints", zh: "旅程觸點（hotel-approved）" },
+      { label: "Traveler-triggered conversations", zh: "旅人觸發對話" },
+      { label: "Dynamic small talk & receptivity", zh: "讀空氣的小聊" },
+      { label: "Purposeful conversation objectives", zh: "目的明確的對話目標" },
+    ],
   },
   {
-    num: "03",
-    zh: "Hospitality 的核心是分寸感。",
-    en: "Hospitality is the art of measure.",
-    body: "什麼時候出現，什麼時候安靜；什麼話該說，什麼話該收。所有壞的服務，幾乎都是分寸感壞了。所有好的 AI 體驗，也將是。",
-  },
-  {
-    num: "04",
-    zh: "一間旅館的靈魂來自人。",
-    en: "A hotel's soul comes from people.",
-    body: "AI 不創造靈魂。它只是把那些靈魂沒被聽見、沒被記住、沒被延續的部分，輕輕接住。",
-  },
-  {
-    num: "05",
-    zh: "Context 比 intelligence 更重要。",
-    en: "Context matters more than intelligence.",
-    body: "對的時機說一句最普通的話，遠勝於在錯誤的時機說一句很聰明的話。Ando 的核心不是更聰明的模型，而是更敏銳的脈絡。",
+    num: "III",
+    en: "Safety",
+    zh: "安全",
+    headline: "Correctness first. Humans remain the heroes.",
+    body: "對旅館來說，省時間很值錢。但正確、安全、信任，更值錢。任何牽涉錢、優惠、退款、補償、即時房況、voucher、commercial exception 的請求，都必須走 verified tool 或員工審核。Agent 不協商，不發明，不在低信心時假裝。",
+    details: [
+      { label: "Money & discounts", zh: "金額與優惠" },
+      { label: "Refunds & compensation", zh: "退款與補償" },
+      { label: "Live rates & availability", zh: "即時房況與費率" },
+      { label: "Voucher validity", zh: "voucher 有效性" },
+      { label: "Booking confirmation", zh: "訂房確認" },
+      { label: "Commercial exception", zh: "商業例外" },
+    ],
   },
 ];
 
 export function Philosophies() {
   return (
-    <section id="philosophy" className="section relative">
+    <section id="mechanisms" className="section relative">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="04" en="Core Philosophies" zh="核心哲學" />
+          <SectionLabel index="04" en="Three Mechanisms" zh="三個機制" />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream max-w-4xl">
-            五條被刻進系統裡的規則。
+          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.18] text-cream max-w-4xl">
+            這個產品的可能性，
             <br />
-            <span className="text-cream/45">Five rules carved into the system.</span>
+            被三個機制
+            <span className="text-amber-soft"> 同時撐住</span>。
           </h2>
         </Reveal>
 
-        <ul className="mt-24 md:mt-32 space-y-20 md:space-y-28">
-          {principles.map((p, i) => (
-            <li key={p.num} className="relative">
+        <ul className="mt-24 md:mt-32 space-y-24 md:space-y-32">
+          {mechanisms.map((m, i) => (
+            <li key={m.num}>
               <Reveal delay={0.05 * i}>
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
-                  <div className="md:col-span-2 md:pt-2">
-                    <span className="display text-5xl md:text-6xl text-amber-soft/40">
-                      {p.num}
+                <article className="grid grid-cols-1 md:grid-cols-12 gap-10">
+                  <div className="md:col-span-3">
+                    <span className="display text-6xl md:text-7xl text-amber-soft/40">
+                      {m.num}
                     </span>
+                    <h3 className="display text-3xl md:text-[2.2rem] mt-5 text-cream">
+                      {m.en}
+                    </h3>
+                    <p className="zh-light text-cream/55 mt-1 text-lg">{m.zh}</p>
                   </div>
                   <div className="md:col-span-9">
-                    <h3 className="display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.18] text-cream">
-                      <span className="zh">{p.zh}</span>
-                    </h3>
-                    <p className="zh-light text-cream/45 mt-3 tracking-wider2 text-sm">
-                      {p.en}
+                    <p className="display text-[clamp(1.5rem,2.6vw,2rem)] leading-[1.3] text-cream">
+                      {m.headline}
                     </p>
                     <div className="hair mt-8 max-w-md" />
-                    <p className="body-prose-zh mt-8 max-w-prose2">{p.body}</p>
+                    <p className="body-prose-zh mt-8 max-w-prose2">{m.body}</p>
+
+                    <div className="mt-10 flex flex-wrap gap-x-3 gap-y-3">
+                      {m.details.map((d) => (
+                        <div
+                          key={d.label}
+                          className="px-4 py-2.5 card-line lift"
+                        >
+                          <p className="display text-cream text-[0.95rem]">
+                            {d.label}
+                          </p>
+                          <p className="zh-light text-cream/45 text-xs mt-0.5">
+                            {d.zh}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </article>
               </Reveal>
             </li>
           ))}

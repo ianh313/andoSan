@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ando — A Living Hospitality System",
+  title: "Ando — A Governed Hospitality Agent System",
   description:
-    "Ando 是一個 AI 原生的旅宿系統。一個讓旅館開始擁有靈魂的系統。Internal manifesto.",
+    "Ando is a governed hospitality agentic system for independent hotels. The agent handles communication. The hotel delivers hospitality. The system turns repeated judgment into institutional knowledge.",
 };
 
 export default function RootLayout({

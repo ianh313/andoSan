@@ -3,78 +3,102 @@
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
-const layers = [
-  { en: "Memory Layer", zh: "記憶層", desc: "旅客、空間與時刻的長期記憶。" },
-  { en: "Personality Layer", zh: "人格層", desc: "每間旅館的語氣、節奏與分寸感。" },
-  { en: "Journey State Engine", zh: "旅程狀態引擎", desc: "在每一刻判斷此刻屬於旅程的哪一段。" },
-  { en: "Retrieval System", zh: "知識檢索系統", desc: "在地的、館內的、旅人的知識，可隨手取得。" },
-  { en: "Context Engine", zh: "情境引擎", desc: "時間、天氣、訊號、心境，被當作一句話的前提。" },
-  { en: "Human Takeover Layer", zh: "人工接管層", desc: "什麼時候交給人，比 AI 自己處理更重要。" },
-  { en: "Notification Orchestration", zh: "通知協調層", desc: "決定一句話該在哪一秒被送出。" },
-  { en: "Traveler Profile Graph", zh: "旅客輪廓圖譜", desc: "由相處累積，而不是由表單填寫。" },
-  { en: "Hospitality Intelligence Layer", zh: "旅宿智慧層", desc: "把模糊的直覺，慢慢結晶為共享的洞察。" },
-  { en: "Public Relationship Layer", zh: "公開關係層", desc: "公開人格、回覆、語氣與情緒。" },
-  { en: "Multi-session Logic", zh: "多階段 session 邏輯", desc: "一段旅程不只一個 session，但仍是同一個人。" },
+const accumulates = [
+  { en: "Confirmed hotel knowledge", zh: "已確認的旅館知識" },
+  { en: "Staff-approved service patterns", zh: "員工背書的服務模式" },
+  { en: "Repeated staff corrections", zh: "反覆出現的員工修正" },
+  { en: "Improved response strategy", zh: "更恰當的回應策略" },
+  { en: "Safer commercial boundaries", zh: "更安全的商業邊界" },
+  { en: "Better local recommendation logic", zh: "更可信的在地推薦邏輯" },
+  { en: "Better timing for follow-up", zh: "更恰當的追蹤時機" },
+  { en: "Better understanding of when not to engage", zh: "更懂得何時不要打擾" },
 ];
 
 export function Architecture() {
   return (
-    <section id="architecture" className="section relative">
+    <section id="asset" className="section relative">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="08" en="System Architecture" zh="系統架構推測" />
+          <SectionLabel index="08" en="The Long Asset" zh="長期資產" />
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-12 gap-10">
-          <div className="md:col-span-7">
+          <div className="md:col-span-8">
             <Reveal delay={0.1}>
-              <h2 className="display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream">
-                旅館看不見的
-                <span className="text-amber-soft">神經系統</span>。
+              <h2 className="display text-[clamp(2rem,4vw,3.2rem)] leading-[1.18] text-cream">
+                旅館真正的長期資產，
+                <br />
+                不是
+                <span className="text-cream/45"> raw traveler data</span>
+                。
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="body-prose-zh mt-8 max-w-prose2">
-                以下是 Ando 內部的 speculative architecture（推測中的架構）。
-                它不是工程藍圖，比較像是一張關於「一個旅館如何感知世界」的草圖。
+              <p className="display text-[clamp(1.6rem,2.8vw,2.2rem)] leading-[1.3] text-cream mt-8">
+                而是
+                <span className="text-amber-soft">「這間旅館學到了什麼，
+                <br />
+                可以把人服務得更好」</span>
+                的那份累積。
               </p>
             </Reveal>
           </div>
-          <div className="md:col-span-4 md:col-start-9 md:pt-8">
+          <div className="md:col-span-4 md:pt-10">
             <Reveal delay={0.3}>
               <p className="margin-note">
-                Drafted as speculation, not a spec. The shape may shift —
-                the disposition will not.
+                Traveler memory is consent-aware, retrievable only under policy,
+                and subject to correction, deletion, suppression and expiry.
               </p>
             </Reveal>
           </div>
         </div>
 
-        <div className="mt-24 md:mt-32 relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-            {layers.map((l, i) => (
-              <Reveal key={l.en} delay={0.03 * i}>
-                <div className="group flex items-start gap-5 py-6 border-b border-amber-soft/10">
+        <div className="mt-24 md:mt-32">
+          <Reveal>
+            <p className="eyebrow mb-3">What the hotel accumulates over time</p>
+            <p className="zh-light text-cream/45 mb-10 tracking-wider2 text-xs">
+              旅館長期累積下來的，是這些
+            </p>
+          </Reveal>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+            {accumulates.map((a, i) => (
+              <Reveal key={a.en} delay={0.03 * i}>
+                <li className="group flex items-start gap-5 py-6 border-b border-amber-soft/10">
                   <span className="num text-amber-soft/50 text-xs pt-2 tabular-nums">
-                    L{String(i + 1).padStart(2, "0")}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="flex-1">
                     <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="display text-cream text-xl md:text-[1.4rem]">
-                        {l.en}
+                      <h3 className="display text-cream text-xl md:text-[1.35rem]">
+                        {a.en}
                       </h3>
-                      <span className="zh-light text-cream/45 text-sm whitespace-nowrap">
-                        {l.zh}
+                      <span className="zh-light text-cream/45 text-sm whitespace-nowrap text-right">
+                        {a.zh}
                       </span>
                     </div>
-                    <p className="zh body-prose-zh text-[0.96rem] mt-3 text-cream/65">
-                      {l.desc}
-                    </p>
                   </div>
-                </div>
+                </li>
               </Reveal>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <div className="mt-32 md:mt-44">
+          <Reveal>
+            <div className="card-soft p-10 md:p-16 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-amber-soft/5 blur-3xl rounded-full -translate-y-1/3 translate-x-1/3" />
+              <div className="relative">
+                <p className="pullquote text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.4] text-cream max-w-4xl">
+                  「It should feel like the best front-desk colleague's instincts
+                  <br />
+                  are gradually becoming part of the hotel's operating system.」
+                </p>
+                <p className="margin-note mt-6 max-w-3xl">
+                  最好的前台同事腦中的直覺，會慢慢，變成這間旅館作業系統的一部分。
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

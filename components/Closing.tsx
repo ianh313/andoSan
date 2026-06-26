@@ -16,79 +16,77 @@ export function Closing() {
 
       <div className="mx-auto max-w-4xl px-6 md:px-10">
         <Reveal>
-          <p className="eyebrow mb-12">Closing thought · 結語</p>
+          <p className="eyebrow mb-12">The final principle · 最終原則</p>
         </Reveal>
 
-        <div className="space-y-12">
+        <div className="space-y-10">
           <Reveal delay={0.1}>
             <p className="display text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.3] text-cream">
-              Ando 想做的，
-              <br />
-              不是更聰明的旅館軟體。
+              The agent handles
+              <span className="text-amber-soft"> communication</span>.
+            </p>
+            <p className="zh-light text-cream/55 mt-2 text-base tracking-wider2">
+              Agent 負責溝通。
             </p>
           </Reveal>
 
           <Reveal delay={0.25}>
-            <p className="display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.35] text-cream/85">
-              而是嘗試讓科技
-              <br />
-              重新幫助空間
-              <span className="text-amber-soft"> 變得有人味</span>。
+            <p className="display text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.3] text-cream">
+              The hotel delivers
+              <span className="text-amber-soft"> hospitality</span>.
+            </p>
+            <p className="zh-light text-cream/55 mt-2 text-base tracking-wider2">
+              旅館負責款待。
             </p>
           </Reveal>
 
           <Reveal delay={0.4}>
-            <p className="body-prose-zh max-w-prose2">
-              不是透過模擬人類。
-              <br />
-              而是透過：
-              記憶、時機、情境、氛圍、延續，與關心。
+            <p className="display text-[clamp(1.8rem,3.6vw,2.8rem)] leading-[1.3] text-cream">
+              The system turns
+              <span className="text-amber-soft"> repeated judgment </span>
+              into
+              <span className="text-amber-soft"> institutional knowledge</span>.
+            </p>
+            <p className="zh-light text-cream/55 mt-2 text-base tracking-wider2">
+              系統，把重複的判斷沉澱為制度知識。
             </p>
           </Reveal>
+        </div>
 
-          <Reveal delay={0.55}>
-            <p className="display text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.4] text-cream/85 mt-16">
-              一間旅館的靈魂，
-              <br />
-              從來不是 automation 建立的。
-              <br />
-              而是被累積下來的
-              <span className="text-amber-soft"> moments</span>。
-            </p>
+        <div className="mt-24">
+          <Reveal>
+            <div className="hair max-w-md" />
           </Reveal>
-
-          <Reveal delay={0.7}>
-            <p className="pullquote text-[1.2rem] md:text-[1.4rem] leading-[1.7] text-cream/75 mt-12 max-w-prose2">
-              「Ando 想做的，只是讓這些 moments，
+          <Reveal delay={0.1}>
+            <p className="body-prose-zh mt-12 max-w-prose2">
+              Ando 不是要替代旅館的人，也不是要取代款待本身。
               <br />
-              不要那麼容易消失。」
+              它只是嘗試讓一間獨立旅館裡，最稀有的東西——人的時間、人的判斷、
+              人的注意力——能被花在它最值得被花的地方。
             </p>
           </Reveal>
         </div>
 
         <div className="mt-32 md:mt-44">
           <Reveal>
-            <div className="hair max-w-md" />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="display text-[clamp(3.2rem,8vw,6.4rem)] leading-[1] text-cream mt-12 tracking-tight">
+            <h2 className="display text-[clamp(3.2rem,8vw,6.4rem)] leading-[1] text-cream tracking-tight">
               ANDO
             </h2>
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.1}>
             <p className="display text-xl md:text-2xl text-cream/80 mt-6">
-              A living hospitality system.
+              A governed hospitality agent system.
             </p>
             <p className="zh text-cream/60 mt-2 text-lg">
-              一個活著的旅宿系統。
+              為獨立旅館打造的，可被治理的款待 agent 系統。
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-24 flex items-end justify-between text-xs">
-          <span className="eyebrow-dim">v0.1 · Internal · 內部閱讀版</span>
+        <div className="mt-24 flex flex-wrap items-end justify-between text-xs gap-y-4">
+          <span className="eyebrow-dim">v0.2 · Internal · 0 to 1 specification</span>
           <span className="zh-light text-cream/30 tracking-wider2">
-            Anna &amp; the King — and the quiet rooms that come after.
+            Not a chatbot. Not marketing automation. Not a free-form autonomous agent.
           </span>
         </div>
       </div>

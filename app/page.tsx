@@ -9,7 +9,6 @@ import { WorldModel } from "@/components/WorldModel";
 import { Personality } from "@/components/Personality";
 import { BehaviorSystems } from "@/components/BehaviorSystems";
 import { Architecture } from "@/components/Architecture";
-import { Strategy } from "@/components/Strategy";
 import { OpenQuestions } from "@/components/OpenQuestions";
 import { Closing } from "@/components/Closing";
 
@@ -27,7 +26,6 @@ export default function Page() {
       <Personality />
       <BehaviorSystems />
       <Architecture />
-      <Strategy />
       <OpenQuestions />
       <Closing />
     </main>

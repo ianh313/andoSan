@@ -3,176 +3,159 @@
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
-type Module = {
+type Component = {
   num: string;
   en: string;
   zh: string;
   description: string;
-  capabilities?: string[];
-  quote?: string;
 };
 
-const modules: Module[] = [
+const components: Component[] = [
   {
     num: "01",
-    en: "Conversational Intake",
-    zh: "對話式接待系統",
+    en: "Hotel Identity Teaching",
+    zh: "旅館自我教學",
     description:
-      "AI 處理 FAQ、房價、房況、訂房詢問與人工接管偵測。讓最重複的事，被最自然地接住——並在需要時，毫無痕跡地交給人。",
+      "旅館如何把自己是誰、怎麼說話、想創造怎樣的體驗——教給系統。這是一切後續行為的源頭。",
   },
   {
     num: "02",
-    en: "AI-native Booking Flow",
-    zh: "AI 原生訂房流程",
+    en: "Inbound Understanding",
+    zh: "入站訊息理解",
     description:
-      "重新設計訂房體驗，讓訂房從交易變成旅程的開始。讓「我要訂房」這句話，本身就已經是 hospitality 的一部分。",
+      "把旅人的訊息正確理解：他在問什麼？此刻在旅程的哪裡？情緒如何？需要多少主動？",
   },
   {
     num: "03",
-    en: "Journey Companion",
-    zh: "旅程夥伴",
+    en: "Hospitality Job",
+    zh: "款待工作",
     description:
-      "Ando 作為 temporary local friend（暫時的在地朋友）——提供在地推薦、情緒陪伴、行程協助與克制的主動互動。它出現的時機，比它說的話更重要。",
+      "Agent 現在到底在做哪一份工作？訂房協助？抵達準備？問題回收？feedback 收集？每一份工作的成功標準不同。",
   },
   {
     num: "04",
-    en: "In-stay Concierge Layer",
-    zh: "入住期間管家層",
+    en: "Plan & Coordinate",
+    zh: "計畫與協調",
     description:
-      "整合房內資訊、館內服務、手機互動與情境化協助。讓「請問早餐幾點」這種日常問題，在你還沒問之前，就已經被照顧好。",
+      "Agent 怎麼計畫、怎麼選擇工具、怎麼決定下一步——以及，何時應該停下來、留給人。",
   },
   {
     num: "05",
-    en: "Memory & Feedback",
-    zh: "記憶與回饋系統",
+    en: "Memory & Retrieval",
+    zh: "記憶與檢索",
     description:
-      "自然蒐集回饋，建立情緒記憶與旅程記憶。不是退房後問你「願不願意推薦」，而是在當下，輕輕記住。",
+      "什麼可以被記住、什麼只是暫時 context、什麼需要被刪除——以及，需要時，如何在 policy 允許下取回。",
   },
   {
     num: "06",
-    en: "Surprise Orchestration",
-    zh: "驚喜協調系統",
+    en: "Message Delivery",
+    zh: "訊息發送",
     description:
-      "根據住房率、服務量能與旅客輪廓，動態安排升等、驚喜與款待時刻，並保留主管審核層。Surprise 不是 SOP，而是一種精準的慷慨。",
+      "決定一句話該不該發、什麼時候發、發到哪個頻道、是否需要 holding-message、是否需要先審核。",
   },
   {
     num: "07",
-    en: "Adaptive Push Layer",
-    zh: "自適應推播層",
+    en: "Data Lifecycle",
+    zh: "資料生命週期",
     description:
-      "動態提供停車資訊、早餐提醒、特殊活動、餐廳資訊與情境推薦，而不是廣播式行銷。一條訊息該不該發，比訊息本身重要得多。",
+      "資料如何被刪除、匯出、壓制、遺忘。Consent-aware 是寫進系統骨架裡的，不是外掛。",
   },
   {
     num: "08",
-    en: "Relationship Continuity",
-    zh: "關係延續系統",
+    en: "Staff Review & Teaching",
+    zh: "員工審核與教學",
     description:
-      "延續關係、記憶、情感與回訪動機，讓旅館不只存在於入住期間。退房，不應該是關係的句點。",
+      "員工如何審核 draft、修正方向、教會系統。他們的修正，會回到 Skill Contracts、知識庫、記憶政策。",
   },
   {
     num: "09",
-    en: "Hospitality Intelligence Layer",
-    zh: "旅宿智慧層",
+    en: "Audit & Monitoring",
+    zh: "稽核與監控",
     description:
-      "Ando 作為旅館的觀察者，長期理解旅客需求、重複模式、情緒氣候、空間節奏、回饋與驚喜效果。",
-    capabilities: [
-      "模式偵測",
-      "營運建議",
-      "服務優化",
-      "活動發想",
-      "情緒分析",
-      "員工智慧輔助",
-    ],
+      "每一個決定都可被追溯。誰提議了什麼？誰允許了什麼？誰拒絕了什麼？發生了什麼？",
   },
   {
     num: "10",
-    en: "Public Relationship Layer",
-    zh: "公開關係層",
+    en: "Governed Loops",
+    zh: "受治理的迴圈",
     description:
-      "Ando 作為旅館的公開人格，協助 Google Review 回覆、社群互動、公開品牌語氣與關係維護。",
-    quote: "Google Review 不只是客服，而是空間人格的公開延伸。",
+      "一段服務不是一次 request/response，而是一段會繼續、會等待、會升級、會重試、會壓制、會結束的工作。Loop，是讓系統像服務一樣思考。",
+  },
+  {
+    num: "11",
+    en: "Security",
+    zh: "安全",
+    description:
+      "對抗 prompt injection、tool abuse、memory poisoning、data leakage、過度自治。最後一道牆，是寫在系統最深處的。",
   },
 ];
 
 export function BehaviorSystems() {
   return (
-    <section id="behavior" className="section relative">
+    <section id="components" className="section relative">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="07" en="Behavior Systems" zh="行為系統" />
+          <SectionLabel index="07" en="Eleven Components" zh="十一個構件" />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream max-w-4xl">
-            一個模組化的款待作業系統。
+          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.18] text-cream max-w-4xl">
+            在教 agent 學會
+            <span className="text-cream/55">行為之前</span>
+            ，
             <br />
-            <span className="text-cream/55">十個章節，十種行為。</span>
+            我們先把
+            <span className="text-amber-soft"> 它周圍的作業系統</span>
+            蓋起來。
           </h2>
         </Reveal>
 
         <Reveal delay={0.2}>
           <p className="body-prose-zh mt-8 max-w-prose2">
-            這不是 feature list，是十個彼此呼吸的章節。
-            每一個都可以單獨存在，但只有當它們合在一起，才會出現「一個地方在記得你」的感覺。
+            十一個構件，定義了 agent 能用什麼知識、正在做什麼工作、怎麼計畫、
+            能記住什麼、何時必須交給員工、訊息怎麼出去、資料怎麼被刪除、
+            系統怎麼被稽核、迴圈怎麼繼續或停止、以及，如何防止它被濫用。
           </p>
         </Reveal>
 
-        <ul className="mt-24 md:mt-32 space-y-16 md:space-y-24">
-          {modules.map((m, i) => (
-            <li key={m.num} className="relative">
-              <Reveal delay={0.04 * (i % 5)}>
-                <article className="group">
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-                    <header className="md:col-span-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="num text-amber-soft/70 text-sm">
-                          chapter · {m.num}
-                        </span>
-                        <span className="block w-10 h-px bg-amber-soft/30" />
-                      </div>
-                      <h3 className="display text-[clamp(1.6rem,2.6vw,2.2rem)] leading-[1.18] text-cream">
-                        {m.en}
-                      </h3>
-                      <p className="zh-light text-cream/55 mt-2 text-base">
-                        {m.zh}
-                      </p>
-                    </header>
-
-                    <div className="md:col-span-7 md:col-start-6 md:pl-10 md:border-l border-amber-soft/10">
-                      <p className="body-prose-zh">
-                        {m.description}
-                      </p>
-
-                      {m.capabilities && (
-                        <div className="mt-8">
-                          <p className="eyebrow mb-4">Possible capabilities</p>
-                          <div className="flex flex-wrap gap-x-3 gap-y-3">
-                            {m.capabilities.map((c) => (
-                              <span
-                                key={c}
-                                className="px-4 py-2 zh-light text-cream/80 border border-amber-soft/15 text-sm"
-                              >
-                                {c}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {m.quote && (
-                        <div className="mt-8 pl-5 border-l-2 border-amber-soft/40">
-                          <p className="pullquote text-amber-soft/90 text-[1.1rem] leading-[1.6]">
-                            「{m.quote}」
-                          </p>
-                        </div>
-                      )}
+        <ul className="mt-24 md:mt-32 space-y-14 md:space-y-20">
+          {components.map((c, i) => (
+            <li key={c.num} className="relative">
+              <Reveal delay={0.03 * (i % 5)}>
+                <article className="group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
+                  <header className="md:col-span-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="num text-amber-soft/70 text-sm">
+                        component · {c.num}
+                      </span>
+                      <span className="block w-10 h-px bg-amber-soft/30" />
                     </div>
+                    <h3 className="display text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.2] text-cream">
+                      {c.en}
+                    </h3>
+                    <p className="zh-light text-cream/55 mt-2 text-base">
+                      {c.zh}
+                    </p>
+                  </header>
+
+                  <div className="md:col-span-7 md:col-start-6 md:pl-10 md:border-l border-amber-soft/10">
+                    <p className="body-prose-zh">{c.description}</p>
                   </div>
                 </article>
               </Reveal>
             </li>
           ))}
         </ul>
+
+        <div className="mt-32 md:mt-40">
+          <Reveal>
+            <p className="pullquote text-[clamp(1.4rem,2.6vw,2rem)] leading-[1.5] text-cream max-w-4xl">
+              「合在一起，它們讓 Ando 成為一個 governed hospitality agent system。
+              <br />
+              <span className="text-cream/50">不是 chatbot，不是 marketing automation，也不是 free-form 自主 agent。」</span>
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -4,18 +4,16 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { href: "#manifesto", label: "Manifesto", zh: "宣言" },
-  { href: "#context", label: "Context", zh: "脈絡" },
-  { href: "#field-notes", label: "Field Notes", zh: "現場筆記" },
-  { href: "#vision", label: "Vision", zh: "願景" },
-  { href: "#philosophy", label: "Philosophy", zh: "哲學" },
-  { href: "#world", label: "World", zh: "世界觀" },
-  { href: "#personality", label: "Personality", zh: "人格" },
-  { href: "#behavior", label: "Behavior", zh: "行為系統" },
-  { href: "#architecture", label: "Architecture", zh: "架構" },
-  { href: "#strategy", label: "Strategy", zh: "策略" },
-  { href: "#moat", label: "Moat", zh: "壁壘" },
-  { href: "#open", label: "Open", zh: "開放" },
+  { href: "#premise", label: "Premise", zh: "前提" },
+  { href: "#not-and-yes", label: "Not & Yes", zh: "我們不是 / 我們是" },
+  { href: "#human-parts", label: "Human Parts", zh: "把人留給人" },
+  { href: "#journey", label: "Journey", zh: "旅程" },
+  { href: "#mechanisms", label: "Mechanisms", zh: "三個機制" },
+  { href: "#console", label: "Console", zh: "旅館控制台" },
+  { href: "#governance", label: "Governance", zh: "治理模型" },
+  { href: "#components", label: "Components", zh: "十一個構件" },
+  { href: "#asset", label: "Long Asset", zh: "長期資產" },
+  { href: "#questions", label: "Open", zh: "開放問題" },
 ];
 
 export function Nav() {
@@ -50,7 +48,7 @@ export function Nav() {
           </a>
 
           <div className="hidden lg:flex items-center gap-7">
-            <span className="eyebrow-dim">Internal · 內部草稿</span>
+            <span className="eyebrow-dim">Internal · 0 to 1 specification</span>
             <button
               onClick={() => setOpen(true)}
               className="group flex items-center gap-3"
@@ -126,8 +124,10 @@ export function Nav() {
               </div>
 
               <div className="px-6 md:px-10 py-6 flex items-center justify-between">
-                <span className="eyebrow-dim">A living hospitality system</span>
-                <span className="zh-light text-cream/30 text-xs">v0.1 · 內部閱讀版</span>
+                <span className="eyebrow-dim">
+                  Agent handles communication. Hotel delivers hospitality.
+                </span>
+                <span className="zh-light text-cream/30 text-xs">v0.2 · 內部規格版</span>
               </div>
             </div>
           </motion.div>

@@ -3,151 +3,183 @@
 import { Reveal } from "./Reveal";
 import { SectionLabel } from "./SectionLabel";
 
-const qualities = [
-  {
-    en: "Contextual",
-    zh: "情境化",
-    desc: "理解時間、天氣、疲憊度、心境與所處空間。",
-  },
-  {
-    en: "Memory-driven",
-    zh: "記憶驅動",
-    desc: "記得旅人喜歡的咖啡，記得三年前那場雨。",
-  },
-  {
-    en: "Personality-aware",
-    zh: "人格感知",
-    desc: "知道一間旅館是安靜的、慢的、不喧嘩的。",
-  },
-];
+type Stage = {
+  num: string;
+  en: string;
+  zh: string;
+  objective: string;
+  initiative: string;
+  detail: string;
+  allowed: string[];
+  guarded: string[];
+};
 
-const verbs = [
-  { en: "Accompany travelers", zh: "陪伴旅人" },
-  { en: "Amplify spatial personality", zh: "放大空間人格" },
-  { en: "Sustain relationships", zh: "延續關係" },
-  { en: "Bridge local culture", zh: "串聯地方文化" },
-  { en: "Let a place feel inhabited", zh: "讓空間更像真正存在的地方" },
+const stages: Stage[] = [
+  {
+    num: "I",
+    en: "Pre-Booking",
+    zh: "訂房前",
+    objective: "Help the traveler decide. Help the hotel convert.",
+    initiative: "Hotel-goal-led, traveler-value-constrained.",
+    detail:
+      "Agent 解釋設施、policy、人格；引導旅人走向正確的訂房通道；不誇大、不發明 discount。",
+    allowed: [
+      "check-in、停車、早餐、寵物政策",
+      "已確認的季節 package、early-bird 規則",
+      "穩定的取消政策",
+    ],
+    guarded: [
+      "live rate 與即時房況需要 verified runtime tool",
+      "任何 commercial exception → 員工審核",
+      "Agent 不協商、不喊價、不發明優惠",
+    ],
+  },
+  {
+    num: "II",
+    en: "Post-Booking",
+    zh: "訂房後",
+    objective: "Become the hotel's local travel companion.",
+    initiative: "Two rhythms — before arrival, and during stay.",
+    detail:
+      "抵達前可以主動：歡迎、確認、行程協助、發現 service opportunity。入住中要克制：以即時實用為主，必要時迅速交給員工。",
+    allowed: [
+      "歡迎與抵達準備",
+      "在地推薦與簡易行程",
+      "Surface service opportunity 給員工",
+      "已規劃 surprise 的遞送",
+    ],
+    guarded: [
+      "旅人忙、急、短回應時，降低主動性",
+      "情緒、糾紛、營業外要求 → 員工",
+      "Agent 不偷偷利用客人脫口而出的資訊",
+    ],
+  },
+  {
+    num: "III",
+    en: "Post-Checkout",
+    zh: "退房後",
+    objective: "Turn feedback into relationship and learning.",
+    initiative: "Gentle. Opt-in. Suppressible.",
+    detail:
+      "感謝、收集誠實的回饋、好的鼓勵公開分享、壞的交回員工，並把所有學到的東西，化為未來的服務智慧。",
+    allowed: [
+      "Thank-you 與 feedback 收集",
+      "好評鼓勵公開分享",
+      "Hotel-approved 致謝 gesture",
+    ],
+    guarded: [
+      "長期外撥需要 explicit consent",
+      "Frequency limits、opt-out、suppression",
+      "Negative feedback 不被自動回覆吸收，要進員工視野",
+    ],
+  },
 ];
 
 export function Vision() {
   return (
-    <section id="vision" className="section relative">
+    <section id="journey" className="section relative">
       <div className="absolute inset-0 -z-10">
         <div className="ember bg-amber-soft/8 w-[40vw] h-[40vw] top-[10%] right-[-5%] opacity-50" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="03" en="Vision" zh="願景" />
+          <SectionLabel index="03" en="The Guest Journey" zh="旅程" />
         </Reveal>
 
-        <div className="mt-16 max-w-4xl">
-          <Reveal delay={0.1}>
-            <p className="display text-[clamp(2.2rem,5vw,4rem)] leading-[1.12] text-cream/45">
-              Ando 不是飯店助手。
-            </p>
-          </Reveal>
-          <Reveal delay={0.25}>
-            <p className="display text-[clamp(2.2rem,5vw,4rem)] leading-[1.12] mt-4 text-cream">
-              它是一個
-              <span className="text-amber-soft">活著的</span>
-              <br />
-              旅宿互動層。
-            </p>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <p className="zh-light text-cream/45 mt-6 text-lg tracking-wider2">
-              a living hospitality layer
-            </p>
-          </Reveal>
-        </div>
+        <Reveal delay={0.1}>
+          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream max-w-4xl">
+            一段旅程，
+            <span className="text-amber-soft">三種目的</span>，
+            <br />
+            三種不同的主動程度。
+          </h2>
+        </Reveal>
 
-        <div className="mt-28 md:mt-36 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {qualities.map((q, i) => (
-            <Reveal key={q.en} delay={0.1 * i}>
-              <div className="card-line lift p-8 h-full">
-                <span className="num text-amber-soft/60 text-xs">
-                  0{i + 1}
-                </span>
-                <h3 className="display text-2xl md:text-[1.8rem] mt-5 text-cream">
-                  {q.en}
-                </h3>
-                <p className="zh-light text-cream/55 mt-1 text-base">{q.zh}</p>
-                <div className="hair mt-6" />
-                <p className="zh body-prose-zh text-[0.96rem] mt-6">
-                  {q.desc}
-                </p>
+        <Reveal delay={0.2}>
+          <p className="body-prose-zh mt-8 max-w-prose2">
+            Agent 在每一個階段的工作不一樣。
+            判斷主動到什麼程度，本身，就是這個系統最重要的事之一。
+          </p>
+        </Reveal>
+
+        <div className="mt-24 md:mt-32 hidden md:flex items-center gap-6">
+          <Reveal>
+            <span className="num text-amber-soft/60 text-xs">stage</span>
+          </Reveal>
+          {stages.map((s, i) => (
+            <Reveal key={s.en} delay={0.1 * i}>
+              <div className="flex items-center gap-6">
+                <span className="display text-cream text-lg">{s.en}</span>
+                {i < stages.length - 1 && (
+                  <span className="block w-20 h-px bg-amber-soft/30" />
+                )}
               </div>
             </Reveal>
           ))}
         </div>
 
-        <div className="mt-32 md:mt-44 grid grid-cols-1 md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
-            <Reveal>
-              <p className="eyebrow mb-4">What Ando does</p>
-              <h3 className="display text-3xl md:text-4xl text-cream leading-[1.2]">
-                Ando 將會 —
-              </h3>
-            </Reveal>
-          </div>
-          <div className="md:col-span-7">
-            <ul className="space-y-1">
-              {verbs.map((v, i) => (
-                <Reveal key={v.en} delay={0.06 * i}>
-                  <li className="group flex items-baseline justify-between gap-6 py-5 border-b border-amber-soft/10">
-                    <span className="zh display text-cream text-[1.4rem] md:text-[1.6rem]">
-                      {v.zh}
-                    </span>
-                    <span className="eyebrow-dim group-hover:text-amber-soft/80 transition-colors duration-700 text-right">
-                      {v.en}
-                    </span>
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ul className="mt-16 md:mt-20 space-y-20 md:space-y-28">
+          {stages.map((s, i) => (
+            <li key={s.num}>
+              <Reveal delay={0.05 * i}>
+                <article className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+                  <header className="md:col-span-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="display text-5xl md:text-6xl text-amber-soft/45">
+                        {s.num}
+                      </span>
+                    </div>
+                    <h3 className="display text-3xl md:text-[2.4rem] text-cream leading-[1.18]">
+                      {s.en}
+                    </h3>
+                    <p className="zh-light text-cream/55 mt-2 text-lg">{s.zh}</p>
+                    <div className="hair mt-6 max-w-[10rem]" />
+                    <p className="display text-cream/75 mt-6 text-[1.05rem] leading-[1.4]">
+                      {s.objective}
+                    </p>
+                    <p className="margin-note mt-4">— {s.initiative}</p>
+                  </header>
 
-        <div className="mt-32 md:mt-44">
-          <Reveal>
-            <div className="card-soft p-10 md:p-16 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-amber-soft/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="relative grid grid-cols-1 md:grid-cols-12 gap-10">
-                <div className="md:col-span-4">
-                  <p className="eyebrow mb-3">A fictional department</p>
-                  <h3 className="display text-[1.8rem] md:text-[2.2rem] text-cream leading-[1.2]">
-                    Traveler
-                    <br />
-                    Success
-                    <br />
-                    Department
-                  </h3>
-                  <p className="zh-light text-amber-soft/80 mt-3 tracking-wider2 text-sm">
-                    旅人成功部門
-                  </p>
-                </div>
-                <div className="md:col-span-7 md:col-start-6">
-                  <p className="body-prose-zh">
-                    Ando 像是一個藏在旅館裡，從未被列入組織架構，
-                    卻每一晚都在工作的部門。
-                  </p>
-                  <p className="body-prose-zh mt-6">
-                    它不是完全的人類。
-                    <br />
-                    也不只是一個 AI。
-                  </p>
-                  <p className="pullquote mt-8 text-amber-soft/90 text-xl md:text-2xl leading-[1.55]">
-                    「它是空間意識的延伸。」
-                  </p>
-                  <p className="margin-note mt-3">
-                    An extension of spatial consciousness.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+                  <div className="md:col-span-7 md:col-start-6 md:pl-8 md:border-l border-amber-soft/10">
+                    <p className="body-prose-zh">{s.detail}</p>
+
+                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <p className="eyebrow mb-3">Allowed</p>
+                        <ul className="space-y-2">
+                          {s.allowed.map((a) => (
+                            <li
+                              key={a}
+                              className="zh body-prose-zh text-cream/75 text-[0.95rem] leading-[1.7] flex items-baseline gap-2"
+                            >
+                              <span className="text-amber-soft/55 text-xs pt-1">+</span>
+                              <span>{a}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="eyebrow mb-3">Guarded</p>
+                        <ul className="space-y-2">
+                          {s.guarded.map((g) => (
+                            <li
+                              key={g}
+                              className="zh body-prose-zh text-cream/65 text-[0.95rem] leading-[1.7] flex items-baseline gap-2"
+                            >
+                              <span className="text-burgundy-low/90 text-xs pt-1">!</span>
+                              <span>{g}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

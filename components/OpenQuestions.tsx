@@ -5,84 +5,89 @@ import { SectionLabel } from "./SectionLabel";
 
 const categories = [
   {
-    en: "Interaction",
-    zh: "互動問題",
+    en: "Boundary",
+    zh: "邊界問題",
     questions: [
-      "AI 應該主動到什麼程度？",
-      "哪種記憶會讓人覺得溫暖？",
-      "哪種記憶會讓人覺得 creepy（詭異）？",
-      "互動頻率要如何控制？",
+      "哪些情況該由 agent 直接回答？哪些必須讓員工接手？",
+      "Pre-approved 商業規則的最小單位是什麼？",
+      "Holding-message 應該存在到哪一秒？",
+      "Tool fallback 失敗時，agent 該假裝沒事還是說真話？",
     ],
   },
   {
-    en: "Emotional",
-    zh: "情感問題",
+    en: "Consent",
+    zh: "同意問題",
     questions: [
-      "AI 能不能產生真正的溫度？",
-      "數位款待如何不失真？",
-      "人會不會開始對空間形成情感依附？",
+      "旅人脫口而出的資訊，何時可以變成 candidate memory？",
+      "哪些資料應該預設不被記住？",
+      "Long-term outreach 的同意如何被收集、被撤回？",
+      "刪除請求應該擴散到哪些表？",
     ],
   },
   {
-    en: "Ethical",
-    zh: "倫理問題",
+    en: "Initiative",
+    zh: "主動問題",
     questions: [
-      "哪些資訊不應該被記錄？",
-      "情緒資料如何處理？",
-      "款待與操控的界線在哪？",
-    ],
-  },
-  {
-    en: "Product",
-    zh: "產品問題",
-    questions: [
-      "第一個模組應該是什麼？",
-      "人工接管怎麼設計？",
-      "人格系統如何配置？",
-      "不同旅館如何訓練自己的 Ando？",
+      "Agent 何時應該開口？何時應該安靜？",
+      "怎麼判斷旅人現在不想被打擾？",
+      "「克制」要如何被量化、被審計？",
+      "Proactive outreach 的頻率天花板，誰來訂？",
     ],
   },
   {
     en: "Operational",
     zh: "營運問題",
     questions: [
-      "AI 是否真的能形成款待直覺？",
-      "如何避免 AI 干擾員工判斷？",
-      "AI 的洞察如何被驗證？",
-      "情緒分析如何呈現？",
+      "員工 review 的 SLA 該是多久？",
+      "Holding message 累積過多時，怎麼分流？",
+      "Agent 草稿與員工 final 之間，差距如何被衡量？",
+      "什麼樣的 review，可以反過來生成新的 Skill Contract？",
+    ],
+  },
+  {
+    en: "Trust",
+    zh: "信任問題",
+    questions: [
+      "Audit 給誰看？",
+      "Memory 解釋給旅人聽，要解釋到哪一層？",
+      "Agent 出錯時，旅館如何承擔？",
+      "員工會不會反過來信任系統勝過自己的判斷？",
     ],
   },
   {
     en: "Long-term",
     zh: "長期問題",
     questions: [
-      "AI 能不能幫助空間累積文化？",
-      "款待能不能重新變得關係化？",
-      "一間旅館能不能成為一個真正活著的地方？",
+      "Institutional knowledge 可以被打包、被轉讓、被遺忘嗎？",
+      "服務直覺被 codify 之後，員工會更自由還是更被約束？",
+      "當許多旅館共用一套底層，hospitality 會更多元，還是更同質？",
+      "這套系統，能不能讓「款待」變得更難被規模化的方式，被傳承？",
     ],
   },
 ];
 
 export function OpenQuestions() {
   return (
-    <section id="open" className="section relative">
+    <section id="questions" className="section relative">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <Reveal>
-          <SectionLabel index="11" en="Open Questions" zh="開放問題" />
+          <SectionLabel index="09" en="Open Questions" zh="開放問題" />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] text-cream max-w-4xl">
-            還沒有答案，
+          <h2 className="mt-14 display text-[clamp(2rem,4vw,3.2rem)] leading-[1.18] text-cream max-w-4xl">
+            governance 不是
+            <span className="text-cream/45">一勞永逸</span>。
             <br />
-            <span className="text-cream/45">但值得被寫在頁邊。</span>
+            這些問題，我們會
+            <span className="text-amber-soft"> 持續帶著</span>。
           </h2>
         </Reveal>
 
         <Reveal delay={0.2}>
           <p className="body-prose-zh mt-8 max-w-prose2">
-            這些是寫在筆記本邊緣的、尚未解開的問題。
-            我們不急著回答，但我們會一直帶著它們，一邊做，一邊想。
+            這些是還沒有定論的開放問題。
+            我們不急著給答案，但每一次決定，都會逼我們重新面對它們其中一個。
           </p>
         </Reveal>
 
@@ -100,7 +105,7 @@ export function OpenQuestions() {
                   <span className="zh-light text-cream/45 text-sm">{c.zh}</span>
                 </div>
                 <ul className="space-y-3 pl-1">
-                  {c.questions.map((q, j) => (
+                  {c.questions.map((q) => (
                     <li
                       key={q}
                       className="zh body-prose-zh text-[1rem] leading-[1.95] flex gap-3 items-start text-cream/75"
