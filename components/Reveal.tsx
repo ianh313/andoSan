@@ -16,9 +16,9 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  y = 24,
+  y = 16,
   once = true,
-  amount = 0.25,
+  amount = 0.2,
 }: RevealProps) {
   const reduce = useReducedMotion();
   return (
@@ -27,7 +27,7 @@ export function Reveal({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, amount }}
       transition={{
-        duration: 1.4,
+        duration: 1.1,
         ease: [0.2, 0.65, 0.2, 1],
         delay,
       }}
@@ -42,7 +42,7 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 1.8,
+  duration = 1.4,
 }: {
   children: ReactNode;
   className?: string;

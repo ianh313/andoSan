@@ -4,35 +4,43 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        ink: {
-          DEFAULT: "#0A0908",
-          deep: "#06060A",
-          char: "#16130F",
-          warm: "#1F1A14",
+        paper: {
+          DEFAULT: "#F1E9D3",
+          soft: "#F6EFD9",
+          card: "#FAF3DF",
+          edge: "#E1D4B0",
+          line: "#D7C8A4",
         },
-        cream: {
-          DEFAULT: "#EFE7D6",
-          dim: "#C9BFA9",
-          mute: "#8E8470",
+        ink: {
+          DEFAULT: "#1B1612",
+          soft: "#3A2E20",
+          mute: "#6E6149",
+          faint: "#9B8C6F",
         },
         amber: {
-          soft: "#C9A86A",
-          dim: "#A88753",
-          ember: "#7E5E33",
+          soft: "#B58547",
+          deep: "#8C6529",
+          ember: "#67451B",
         },
-        olive: {
-          dusty: "#5E5A45",
+        sage: {
+          DEFAULT: "#7E8264",
         },
         burgundy: {
-          low: "#5C2E2C",
+          DEFAULT: "#6F312D",
         },
+        nocturne: {
+          DEFAULT: "#1C1812",
+          soft: "#2A231A",
+        },
+        fade: "#F0E5C9",
       },
       fontFamily: {
-        serif: ['"EB Garamond"', '"Cormorant Garamond"', '"Noto Serif TC"', "Georgia", "serif"],
+        serif: ['"EB Garamond"', '"Noto Serif TC"', "Georgia", "serif"],
         sans: ['"Inter"', '"Noto Sans TC"', "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
       },
@@ -46,29 +54,11 @@ const config: Config = {
       keyframes: {
         slowfloat: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
-        },
-        grain: {
-          "0%, 100%": { transform: "translate(0,0)" },
-          "10%": { transform: "translate(-2%,-1%)" },
-          "20%": { transform: "translate(1%,2%)" },
-          "30%": { transform: "translate(-1%,1%)" },
-          "40%": { transform: "translate(2%,-2%)" },
-          "50%": { transform: "translate(-2%,2%)" },
-          "60%": { transform: "translate(1%,-1%)" },
-          "70%": { transform: "translate(-1%,-2%)" },
-          "80%": { transform: "translate(2%,1%)" },
-          "90%": { transform: "translate(-2%,2%)" },
-        },
-        emberpulse: {
-          "0%, 100%": { opacity: "0.35" },
-          "50%": { opacity: "0.55" },
+          "50%": { transform: "translateY(-6px)" },
         },
       },
       animation: {
         slowfloat: "slowfloat 9s ease-in-out infinite",
-        grain: "grain 8s steps(10) infinite",
-        emberpulse: "emberpulse 7s ease-in-out infinite",
       },
     },
   },

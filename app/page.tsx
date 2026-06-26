@@ -1,33 +1,27 @@
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
-import { Manifesto } from "@/components/Manifesto";
-import { IndustryContext } from "@/components/IndustryContext";
-import { FieldNotes } from "@/components/FieldNotes";
-import { Vision } from "@/components/Vision";
-import { Philosophies } from "@/components/Philosophies";
-import { WorldModel } from "@/components/WorldModel";
-import { Personality } from "@/components/Personality";
-import { BehaviorSystems } from "@/components/BehaviorSystems";
-import { Architecture } from "@/components/Architecture";
-import { OpenQuestions } from "@/components/OpenQuestions";
-import { Closing } from "@/components/Closing";
+import { HeroSection } from "@/components/HeroSection";
+import { ProblemStorySection } from "@/components/ProblemStorySection";
+import { ServiceMomentSection } from "@/components/ServiceMomentSection";
+import { JourneySection } from "@/components/JourneySection";
+import { ValueSection } from "@/components/ValueSection";
+import { DifferenceSection } from "@/components/DifferenceSection";
+import { TrustSection } from "@/components/TrustSection";
+import { IdealCustomerSection } from "@/components/IdealCustomerSection";
+import { CTASection } from "@/components/CTASection";
 
 export default function Page() {
   return (
     <main className="relative">
       <Nav />
-      <Hero />
-      <Manifesto />
-      <IndustryContext />
-      <FieldNotes />
-      <Vision />
-      <Philosophies />
-      <WorldModel />
-      <Personality />
-      <BehaviorSystems />
-      <Architecture />
-      <OpenQuestions />
-      <Closing />
+      <HeroSection />
+      <ProblemStorySection />
+      <ServiceMomentSection />
+      <JourneySection />
+      <ValueSection />
+      <DifferenceSection />
+      <TrustSection />
+      <IdealCustomerSection />
+      <CTASection />
     </main>
   );
 }

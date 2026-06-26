@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ando — A Governed Hospitality Agent System",
+  title: "Ando — 為旅宿打造的 AI 服務夥伴",
   description:
-    "Ando is a governed hospitality agentic system for independent hotels. The agent handles communication. The hotel delivers hospitality. The system turns repeated judgment into institutional knowledge.",
+    "Ando 是為旅宿打造的 AI 服務夥伴。它幫飯店回覆訊息、照顧旅程、發現服務機會，讓員工把時間留給真正有溫度的 hospitality。",
 };
 
 export default function RootLayout({
@@ -14,9 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-Hant">
-      <body className="grain vignette">
-        {children}
-      </body>
+      <body className="paper-grain">{children}</body>
     </html>
   );
 }
